@@ -1,0 +1,46 @@
+<ion-header no-border>
+  <ion-toolbar>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+  
+      <ion-row>
+        <ion-col size="12" size-sm></ion-col>
+          <ion-col size="12" size-sm text-center>
+            <img src="assets/icon/logo.svg" style="width:128px">
+          </ion-col>
+        <ion-col size="12" size-sm></ion-col>
+      </ion-row>
+  
+      <ion-row>
+          
+          <ion-col size="12" size-sm></ion-col>
+            <ion-col size="12" size-sm text-center>
+                <h3>Enter with</h3>
+                <ion-button expand="full" shape="round" color="facebook" (click)="loginFacebook()">
+                    <ion-icon slot="start" name="logo-facebook"></ion-icon>
+                    <div>Facebook</div>
+                </ion-button>
+            
+                <ion-button expand="full" shape="round" color="google" (click)="loginGoogle()">
+                    <ion-icon slot="start" name="logo-google"></ion-icon>
+                    <div>Google</div>
+                </ion-button>
+                <ion-button expand="full" shape="round" color="twitter" (click)="loginTwitter()">
+                    <ion-icon slot="start" name="logo-twitter"></ion-icon>
+                    <div>Twitter</div>
+                </ion-button>
+  
+            </ion-col>
+          <ion-col size="12" size-sm></ion-col>
+      </ion-row>
+  
+
+  
+    </ion-grid>
+    
+    
+  </ion-content>

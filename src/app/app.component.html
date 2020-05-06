@@ -1,0 +1,75 @@
+<ion-app>
+    
+  <ion-split-pane>
+    <ion-menu>
+        <ion-header no-border>
+        <ion-toolbar>
+
+          <ion-list lines="none">
+            <ion-item>
+        
+                <ion-avatar slot="start">
+                    <img [src]="user?.photoURL || spinner" style="width:120px">
+                  </ion-avatar>
+                  <ion-label item-left>
+        
+                    <p>
+                        {{user?.displayName}}
+                    </p>
+        
+                </ion-label>
+                <ion-label item-right text-right>
+                    <ion-button color="dark" fill="clear" (click)="goSettings()">
+                        <ion-icon slot="icon-only" name="settings"></ion-icon>
+                    </ion-button>
+                    <ion-button color="dark" fill="clear" (click)="logout()">
+                        <ion-icon slot="icon-only" name="exit"></ion-icon>
+                    </ion-button>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+
+
+        </ion-toolbar>
+      </ion-header>
+      <ion-content style="--background: #F0F4F8">
+          
+        <ion-list no-padding>
+
+          <ion-item>
+              <ion-label item-right text-right>
+                  <ion-button shape="round" color="light" (click)="openUsersList()">+ Conversation</ion-button>
+              </ion-label>
+          </ion-item>
+      
+          <ion-item *ngIf="loading">loading ...</ion-item>
+          <div *ngIf="chat$">
+            <ion-item *ngFor="let chat of chat$" (click)="showChat(chat)" class="listHover" [ngClass]="chat.lastUpdated>chat[user.uid].lastUpdated ? 'unread' : ''">
+      
+                <ion-avatar slot="start" style="position:relative">
+                    <img [src]="chat[chat.otherUid].photoURL">
+                    <div *ngIf="chat.presence | async as presence">
+                        <span class="onlineOffline_icon" [ngClass]="presence.status"></span>
+                    </div>
+                  </ion-avatar>
+                  <ion-label item-left>
+                    <h3>{{chat[chat.otherUid].displayName}}</h3>
+                    <p>
+                        {{chat.messages[chat.messages.length-1].content}}
+                    </p>
+      
+                </ion-label>
+                <ion-label item-right text-right>
+                  <p>{{chat.lastUpdated | chatTime}}</p>
+                </ion-label>
+            </ion-item>
+            </div>
+
+        </ion-list>
+
+      </ion-content>
+    </ion-menu>
+
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
